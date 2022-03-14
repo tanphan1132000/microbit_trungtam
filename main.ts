@@ -3,17 +3,7 @@ radio.onReceivedString(function (receivedString) {
 })
 serial.onDataReceived(serial.delimiters(Delimiters.Hash), function () {
     cmd = serial.readUntil(serial.delimiters(Delimiters.Hash))
-    if (cmd == "0") {
-        basic.showLeds(`
-            . . # . .
-            . # # # .
-            # # # # #
-            . # # # .
-            . . # . .
-            `)
-    } else if (cmd == "1") {
-        basic.clearScreen()
-    }
+    radio.sendString(cmd)
 })
 let cmd = ""
 radio.setGroup(1)
